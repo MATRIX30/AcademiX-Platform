@@ -4,13 +4,25 @@
 from datetime import datetime
 from uuid import uuid4
 import models
+from os import getenv
+from sqlalchemy import Column, String, DateTime
+from sqlalchemy.ext.declarative import declarative_base
+
+
+if models.storage_type == 'db':
+    Base = declarative_base()
+else:
+    Base = object
 
 class BaseModel:
     """Base model class"""
-    id:str
-    created_at:datetime
-    updated_at:datetime
+    if models.storage_type == 'db':
+        id = Column(String(60), unique=True, nullable=False, primary_key=True)
+        created_at = Column(DateTime, nullable=False, default=datetime.utcnow())
+        updated_at = Column(DateTime, nullable=False, default=datetime.utcnow())
     
+    
+
     def __init__(self, *args, **kwargs):
         """
         constructor for Base Model class
@@ -20,12 +32,21 @@ class BaseModel:
                 if key != '__class__':
                     if key in ['created_at', 'updated_at']:
                         value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    # verify if id is available and its string if not pass we will auto generate one
+                    if key == 'id' and type(key) != str:
+                        pass
                     setattr(self, key, value)
+            if getattr(self, 'created_at', None) is None:
+                setattr(self, 'created_at', datetime.now())
+            if getattr(self, 'updated_at', None) is None:
+                setattr(self, 'updated_at', datetime.now())
+            if getattr(self, 'id', None) is None:
+                setattr(self, 'id', str(uuid4()))
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            models.storage.new(self)
+            
     
     
     def __str__(self) -> str:
@@ -37,7 +58,9 @@ class BaseModel:
            and update instance updated time
         """
         self.updated_at = datetime.now()
+        models.storage.new(self)
         models.storage.save()
+        
         
     def to_dict(self):
         """
@@ -47,4 +70,8 @@ class BaseModel:
         dict_repr["__class__"] = self.__class__.__name__
         dict_repr["created_at"] = dict_repr["created_at"].isoformat()
         dict_repr["updated_at"] = dict_repr["updated_at"].isoformat()
+        dict_repr.pop("_sa_instance_state", None)
         return dict_repr
+    def delete(self):
+        """method to manage deletion of object"""
+        models.storage.delete(self)
