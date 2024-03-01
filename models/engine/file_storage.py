@@ -3,6 +3,12 @@
 import json
 import os
 from models.base_model import BaseModel
+# from models.admin import Admin
+# from models.teacher import Teacher
+# from models.class_ import Class
+# from models.course import Course
+from models.personnel import Personnel
+# from models.student import Student
 from json.decoder import JSONDecodeError
 
 
@@ -11,8 +17,17 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
     
-    def all(self):
+    def all(self, cls=None):
         """returns all objects in storage"""
+        
+        if cls:
+            available_classes = [class_.split('.')[0] for class_ in FileStorage.__objects.keys()]
+            res = {}
+            if cls in available_classes:
+                for key, obj in FileStorage.__objects.items():
+                    if cls == key.split('.')[0]:
+                        res[key] = obj
+                return res
         return FileStorage.__objects
     
     def new(self, obj):
@@ -40,3 +55,15 @@ class FileStorage:
             for obj_key, obj in json_objects.items():
                 res_objs[obj_key] = eval(obj["__class__"])(**obj)
             FileStorage.__objects = res_objs
+            
+    def delete(self, obj=None):
+        """method to delete object from objects"""
+        if obj:
+            key = "{}.{}".format(obj.__class__.__name__, obj.id)
+            if key in FileStorage.__objects.keys():
+                FileStorage.__objects.pop(key, None)
+            self.save()
+                
+    def close(self):
+        """calls reload method for deserializing the json file to objects"""
+        self.reload()
