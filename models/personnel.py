@@ -59,4 +59,3 @@ class Personnel(BaseModel, Base):
                 if self.id == key.split('.')[1]:
                     admin = all_admins[key]
             return admin 
-

@@ -1,12 +1,13 @@
 #!/usr/bin/pythonn3
 """module to handle teachers"""
 import models
-import os
 from models.base_model import Base
 from models.personnel import Personnel
 
+
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
+
 
 
 class Teacher(Personnel, Base):
@@ -18,6 +19,7 @@ class Teacher(Personnel, Base):
         grade = Column(String(10), nullable=False, default="ECI")
         position = Column(String(25), nullable=False)
         id = Column(String(60), ForeignKey('personnels.id'), nullable=False,primary_key=True)
+        # relationship with Course table
         courses = relationship("Course", backref="teacher", cascade="all, delete, delete-orphan")
     else:
         matricule = ""
