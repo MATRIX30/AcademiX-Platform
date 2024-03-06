@@ -48,22 +48,23 @@ class DBStorage:
                     new_dict[key] = obj
         return (new_dict)
     
-    @event.listens_for(Course, 'after_insert')
-    def insert_student_courses(self, mapper, connection, target):
-        # Get all students belonging to the class of the newly inserted course
-        students = target.class_.students
-        # Create entries in the student_course table for each student
-        for student in students:
-            self.__session.execute(student_course.insert().values(
-                student_id=student.registration_number,
-                course_id=target.code,
-                first_seq=0.0,
-                second_seq=0.0,
-                third_seq=0.0,
-                fourth_seq=0.0,
-                fifth_seq=0.0,
-                sixth_seq=0.0
-            ))
+    """     @event.listens_for(Course, 'after_insert')
+        def insert_student_courses(self, mapper, connection, target):
+            # Get all students belonging to the class of the newly inserted course
+            students = target.class_.students
+            # Create entries in the student_course table for each student
+            for student in students:
+                self.__session.execute(student_course.insert().values(
+                    student_id=student.registration_number,
+                    course_id=target.code,
+                    first_seq=0.0,
+                    second_seq=0.0,
+                    third_seq=0.0,
+                    fourth_seq=0.0,
+                    fifth_seq=0.0,
+                    sixth_seq=0.0
+                ))
+        """
     def count(self, cls=None):
         """method to return the number of objects in db"""
         if cls is None:
@@ -103,3 +104,7 @@ class DBStorage:
     def close(self):
         """call remove() method on private session and close database"""
         self.__session.remove()
+        
+    def get_session(self):
+        """get the current session"""
+        return self.__session

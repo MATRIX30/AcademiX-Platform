@@ -5,6 +5,7 @@ import models
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship
+from sqlalchemy import event
 
 
 storage_type = models.storage_type
@@ -35,21 +36,3 @@ class Course(BaseModel, Base):
         from models.teacher import Teacher
         super().__init__(*args, **kwargs)
         
-    
-    if storage_type == "db"
-        @event.listens_for(Course, 'after_insert')
-        def insert_student_courses(mapper, connection, target):
-            # Get all students belonging to the class of the newly inserted course
-            students = target.class_.students
-            # Create entries in the student_course table for each student
-            for student in students:
-                connection.execute(student_course.insert().values(
-                    student_id=student.registration_number,
-                    course_id=target.code,
-                    first_seq=0.0,
-                    second_seq=0.0,
-                    third_seq=0.0,
-                    fourth_seq=0.0,
-                    fifth_seq=0.0,
-                    sixth_seq=0.0
-                ))
