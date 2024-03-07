@@ -47,25 +47,38 @@ class Class(BaseModel, Base):
                 if student.class_id  == self.id:
                     student_list.append(student)
             return student_list
-from models.course import Course
-from models.student import Student, student_course
+if models.storage_type == "db":
+    from models.course import Course
+    from models.student import Student, student_course
 
-@event.listens_for(Course, "after_insert")
-def copy_course_to_students(mapper, connection, target):
-    # Retrieve all students with the same class_id as the inserted course
-    students = models.storage.get_session().query(Student).filter(Student.class_id == target.class_id).all()
-    
-    # Iterate over the students and insert the course for each one with default values for seqs
-    for student in students:
-        student_course_insert = student_course.insert().values(
-            student_id=student.registration_number,
-            course_id=target.code,
-            first_seq=0.0,
-            second_seq=0.0,
-            third_seq=0.0,
-            fourth_seq=0.0,
-            fifth_seq=0.0,
-            sixth_seq=0.0
-        )
-        connection.execute(student_course_insert)
+    @event.listens_for(Course, "after_insert")
+    def copy_course_to_students(mapper, connection, target):
+        # Retrieve all students with the same class_id as the inserted course
+        students = models.storage.get_session().query(Student).filter(Student.class_id == target.class_id).all()
         
+        # Iterate over the students and insert the course for each one with default values for seqs
+        for student in students:
+            student_course_insert = student_course.insert().values(
+                student_id=student.registration_number,
+                course_id=target.code,
+                first_seq=0.0,
+                second_seq=0.0,
+                third_seq=0.0,
+                fourth_seq=0.0,
+                fifth_seq=0.0,
+                sixth_seq=0.0
+            )
+            connection.execute(student_course_insert)
+
+    @event.listens_for(Student, "after_insert")
+    def copy_course_to_students(mapper, connection, target):
+        # Retrieve all courses with the same class_id as the inserted student
+        courses = models.storage.get_session().query(Course).filter(Course.class_id == target.class_id).all()
+        
+        # Iterate over the courses and offered in a class and register a student for it
+        for course in courses:
+            student_course_insert = student_course.insert().values(
+                student_id=target.registration_number,
+                course_id=course.code
+            )
+            connection.execute(student_course_insert)
