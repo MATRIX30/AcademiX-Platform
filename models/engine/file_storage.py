@@ -3,12 +3,12 @@
 import json
 import os
 from models.base_model import BaseModel
-# from models.admin import Admin
-# from models.teacher import Teacher
-# from models.class_ import Class
-# from models.course import Course
+from models.admin import Admin
+from models.teacher import Teacher
+from models.class_ import Class
+from models.course import Course
 from models.personnel import Personnel
-# from models.student import Student
+from models.student import Student
 from json.decoder import JSONDecodeError
 
 
@@ -67,3 +67,17 @@ class FileStorage:
     def close(self):
         """calls reload method for deserializing the json file to objects"""
         self.reload()
+    
+    def count(self, cls=None):
+        """method to return the number of objects in fs"""
+        count = 0
+        result = {}
+        if cls is None:
+            return len(self.__objects)
+        
+    def get(self, cls, id):
+        """method to get an object by id"""
+        for obj in self.__objects.keys():
+            val = obj.split('.')[1]
+            if val == id:
+                return  self.__objects[obj]

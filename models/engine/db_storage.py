@@ -44,40 +44,28 @@ class DBStorage:
             if cls is None or cls is classes[clss] or cls is clss:
                 objs = self.__session.query(classes[clss]).all()
                 for obj in objs:
-                    key = obj.__class__.__name___ + '.' + obj.id
+                    key = obj.__class__.__name__ + '.' + obj.id
                     new_dict[key] = obj
-        return (new_dict)
+        return new_dict
     
-    """     @event.listens_for(Course, 'after_insert')
-        def insert_student_courses(self, mapper, connection, target):
-            # Get all students belonging to the class of the newly inserted course
-            students = target.class_.students
-            # Create entries in the student_course table for each student
-            for student in students:
-                self.__session.execute(student_course.insert().values(
-                    student_id=student.registration_number,
-                    course_id=target.code,
-                    first_seq=0.0,
-                    second_seq=0.0,
-                    third_seq=0.0,
-                    fourth_seq=0.0,
-                    fifth_seq=0.0,
-                    sixth_seq=0.0
-                ))
-        """
     def count(self, cls=None):
         """method to return the number of objects in db"""
         if cls is None:
             count = 0
             for cls in classes.values():
                 count+=self.__session.query(cls).count()
-            return (count)
-        if cls not in classes.values() or cls not in classes.keys():
-            return (0)
+            return count
+        if cls in classes.keys():
+            cls = classes[cls]
+        if cls not in classes.values():
+            return 0
         return self.__session.query(cls).count()
+    
     def get(self, cls, id):
         """method to get an object by id"""
-        if cls not in classes.values() or cls not in classes.keys():
+        if cls in classes.keys():
+            cls = classes[cls]
+        if cls not in classes.values():
             return None
         return self.__session.query(cls).filter(id == cls.id).one_or_none()
     
