@@ -13,8 +13,12 @@ app.register_blueprint(app_views)
 
 @app.teardown_appcontext
 def close_session(Exception):
-    """method to close down the session by disconnecting from storage engine"""
+    """
+    method to close down the session by
+    disconnecting from storage engine
+    """
     storage.close()
+    
 @app.errorhandler(404)
 def not_found(Exception):
     """Returns Not found error for a request"""
