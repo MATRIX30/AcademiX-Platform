@@ -22,7 +22,8 @@ class Personnel(BaseModel, Base):
         
         # personnel can be admin or teacher
         admin = relationship("Admin", backref="personnel")
-        teacher = relationship("Teacher", backref="personnel")
+        teacher = relationship("Teacher", backref="personnel", cascade="all, delete, delete-orphan")
+        
     else:
         first_name = ""
         last_name = ""
