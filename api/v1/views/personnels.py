@@ -14,7 +14,7 @@ def personnels():
     """
     method to manage personnels
 		GET: returns all personnels
-		CREATE: creates a new personnel
+		POST: creates a new personnel
     """
     if request.method == "GET":
         personnels = [personnel.to_dict() for personnel in storage.all(Personnel).values()]
