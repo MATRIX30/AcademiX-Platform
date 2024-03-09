@@ -11,6 +11,9 @@ from models.personnel import Personnel
 from models.student import Student
 from json.decoder import JSONDecodeError
 
+classes = {"Teacher": Teacher, "Course":Course,
+           "Class":Class, "Personnel": Personnel, "Admin":Admin,
+           "BaseModel":BaseModel, "Student":Student}
 
 class FileStorage:
     """class to manage file storage"""
@@ -63,6 +66,7 @@ class FileStorage:
             if key in FileStorage.__objects.keys():
                 FileStorage.__objects.pop(key, None)
             self.save()
+            self.reload()
                 
     def close(self):
         """calls reload method for deserializing the json file to objects"""
@@ -70,10 +74,23 @@ class FileStorage:
     
     def count(self, cls=None):
         """method to return the number of objects in fs"""
+        self.reload()
         count = 0
         result = {}
         if cls is None:
             return len(self.__objects)
+        available_clsses = [obj.split(".")[0] for obj in self.__objects.keys()]
+        if cls in classes.values():
+            for item in available_clsses:
+                if cls.__name__ == item:
+                    count += 1
+            return count
+        if cls in classes.keys():
+            for item in available_clsses:
+                if cls == item:
+                    count += 1
+            return count
+        return 0
         
     def get(self, cls, id):
         """method to get an object by id"""
