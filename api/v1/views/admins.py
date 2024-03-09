@@ -6,7 +6,7 @@ from flask import jsonify, abort, request
 from models.admin import Admin
 from api.v1.views import limiter
 
-
+session = storage.get_session()
 
 @app_views.route("/admins", methods=['GET', 'POST'], strict_slashes=False)
 @limiter.limit("1 per minute")
@@ -81,3 +81,58 @@ def get_admin(admin_id):
                 setattr(admin, attribute, value)
         admin.save()
         return jsonify(admin.to_dict()), 201
+
+
+@app_views.route("/admin/info/<admin_id>",  methods=['GET'], strict_slashes=False)
+def get_admin_info(admin_id):
+    """
+    method to retrieve all information about an admin
+		GET: gets all information related to an admin
+    """
+    import requests
+    admin_details = {}
+    
+    # section to manage personal information
+
+    admin = storage.get(Admin, admin_id)
+    if admin is None:
+            admin = session.query(Admin).filter_by(matricule=admin_id).first()
+            if admin is None:
+                abort(404)
+    admin_info = {}
+    admin_info["status"] = admin.status
+    admin_info["admin_type"] = admin.admin_type
+    admin_info["created_at"] = admin.created_at
+    admin_info["updated_at"] = admin.updated_at
+
+    admin_details["admin_info"] = admin_info
+  
+    #from models.personnel import Personnel
+    # personnel = session.query(Personnel).filter_by(id=admin["id"]).first()
+    personnel = admin.personnel
+
+    personal_info = {}
+    personal_info["First_Name"] = personnel.first_name
+    personal_info["Last_Name"] = personnel.last_name
+    personal_info["Email"] = personnel.email
+    personal_info["id"] = personnel.id
+    
+    admin_details["personal_info"] = personal_info
+    
+    from models.course import Course
+    from models.class_ import Class
+    from models.personnel import Personnel
+    from models.teacher import Teacher
+    from models.student import Student
+
+    adminstrative_info = {}
+    adminstrative_info["courses"] = session.query(Course).count()
+    adminstrative_info["classes"] = session.query(Class).count()
+    adminstrative_info["Personnels"] = session.query(Personnel).count()
+    adminstrative_info["Teachers"] = session.query(Teacher).count()
+    adminstrative_info["students"] = session.query(Student).count()
+    
+    admin_details["adminstrative_info "] = adminstrative_info 
+
+    
+    return jsonify(admin_details), 200

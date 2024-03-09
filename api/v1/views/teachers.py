@@ -93,8 +93,8 @@ def get_teacher(teacher_id):
 @app_views.route("/teacher/info/<teacher_id>",  methods=['GET'], strict_slashes=False)
 def get_teacher_info(teacher_id):
     """
-    method to retrieve all information about a student
-		GET: gets all information related to a student
+    method to retrieve all information about a teacher
+		GET: gets all information related to a teacher
     """
     import requests
     teacher_details = {}
