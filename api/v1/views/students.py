@@ -119,7 +119,7 @@ def get_student_info(student_id):
     
     personal_info["First_Name"] = student.first_name
     personal_info["Last_Name"] = student.last_name
-    personal_info["Student ID:"] = student.registration_number
+    personal_info["Student ID"] = student.registration_number
     personal_info["Class"] = student.class_id
     personal_info["Email"] = student.email
     
