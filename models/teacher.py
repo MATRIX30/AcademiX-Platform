@@ -15,10 +15,10 @@ class Teacher(Personnel, Base):
     
     if models.storage_type == 'db':
         __tablename__ = "teachers"
-        matricule = Column(String(8),nullable=False)
+        matricule = Column(String(8),nullable=False, primary_key=True)
         grade = Column(String(10), nullable=False, default="ECI")
         position = Column(String(25), nullable=False)
-        id = Column(String(60), ForeignKey('personnels.id'), nullable=False,primary_key=True)
+        id = Column(String(60), ForeignKey('personnels.id'), nullable=False)
         # relationship with Course table
         courses = relationship("Course", backref="teacher", cascade="all, delete, delete-orphan")
     else:
