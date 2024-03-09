@@ -22,7 +22,8 @@ class Course(BaseModel, Base):
         class_id = Column(String(60), ForeignKey('classes.code'), nullable=False)
         
         # relationships
-        # students = relationship("Studnet", backref='course')
+        # students = relationship("Student", backref='course')
+
       
     else:
         code = ""
