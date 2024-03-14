@@ -1,0 +1,78 @@
+
+.container {
+	
+	display: flex;
+	justify-content: center;
+	height: 85vh;
+	align-items: center;
+	flex-wrap: wrap;
+	
+}
+.body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.login_container{
+	background-color: #3F4E4F;
+	border-radius: 10px;
+	width: 400px;
+	justify-content: center;
+	align-items: center;
+	border: 3px solid rgb(249, 249, 249); 
+}
+
+
+.logo>img {
+	width: 200px;
+}
+
+.logo {
+	margin: 20px;
+	text-align: center;
+	font-size: 19px;
+}
+
+.login_form {
+	text-align: center;
+	margin-top: 20px;
+}
+.foot{
+	text-align: center;
+	font-weight: 600;
+}
+
+input {
+	transition: box-shadow 0.3s;
+	border-radius: 7px;
+	width: 65%;
+	height: 30px;
+	margin: 13px;
+	display: inline-block;
+	margin: none;
+}
+
+input:hover {
+	box-shadow: 0 0 10px #f46767;	
+}
+
+button{
+	margin: 7%;
+	border-radius: 4px;
+	border: 1px solid;
+	border-color: #F26739;;
+	background-color: #F26739;
+	width: 100px;
+	height: 30px;
+	color: wheat;
+	font-size: 16px;
+}
+
+button:hover{
+	box-shadow: 0 0 10px #f46767
+}
+
+a {
+	font-size: 18px;
+	color: white;
+    text-decoration: none; /* Removes underline */
+    outline: none; /* Removes the blue outline when focused (not recommended for accessibility) */
+}
