@@ -1,0 +1,18 @@
+.btn {
+    background-color: #F15A29;
+}
+.btn:hover{
+	box-shadow: 0 0 10px #f46767
+}
+.nav-item{
+	color: #F15A29;
+}
+.header {
+	background-image: url('../img/peakpx.jpg');
+}
+#aboutus{
+	background-color:#f8f9fa;
+}
+#login{
+	background-color:#f8f9fa;
+}

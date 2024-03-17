@@ -1,0 +1,150 @@
+.nav_container{
+	background-color: #3F4E4F;
+	display: inline-flex;
+	flex-direction: column;
+	height: 100vh;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+}
+
+
+
+div > img {
+	width: 30px;
+	height: 30px;
+	border-radius: 25%;
+	
+}
+a > img {
+	width: 30px;
+	height: 30px;
+	border-radius: 25%;
+	
+}
+
+.nav_container > div {
+	padding: 20px;
+	margin: 1px, 0px;	
+}
+
+.content-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto ;
+    gap: 50px;
+    margin-left: 90px; /* Adjust margin-left to match the width of the nav bar */
+    padding: 20px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.grid {
+	
+	width: auto;
+	border-radius: 5px;
+	background-color: gray;
+	border: 2px solid whitesmoke;
+}
+
+.popup-text {
+	display: none;
+	position: absolute;
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	
+	width: 80px;
+	
+  }
+  
+  .image-container  {
+	position: relative;
+	border-radius: 5%;
+  }
+  
+  .image-container:hover .popup-text {
+	display: inline;
+	
+  }
+
+  
+  hr {
+	margin-top: 20px;
+  }
+  
+
+  .header-section {
+	margin: 10px;
+	padding: 1px;
+	background-color: #FF8080;
+	border-radius: 4px;
+	text-align: center;
+  }
+  .header-section > h2 {
+	font-weight: 500;
+	
+  }
+
+  .body-section {
+	margin: 10px;
+	padding: 20px;
+	background-color: #f7f3f3;
+	border-radius: 4px;
+  }
+
+  .Rank > p{
+	display: inline-block;
+	margin: 10px;
+	padding: 4px;
+  }
+
+.personal_info > ul {
+	list-style: none;
+	font-size: medium;
+	font-weight: 600;
+  }
+
+.course_info{
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+	align-items: center;
+	font-weight: 600;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	
+}
+
+
+.view_course_info > button {
+	border-radius: 15px;
+	border: 1px solid white;
+	background-color: #f54e4e;
+	padding: 10px;
+	color: #f7f3f3;
+}
+
+.gray {
+	background-color: gray;
+	border-radius: 50px;
+	margin-top: 10px;
+}
+
+.course_title {
+	padding: 5px;
+	margin-left: 20px;
+}
+
+.message_info{
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+	align-items: center;
+	font-weight: 600;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.footer {
+	text-align: center;
+	font-weight: 600;
+	margin: 5px;
+}
+
