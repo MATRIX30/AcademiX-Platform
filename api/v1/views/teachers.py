@@ -123,6 +123,7 @@ def get_teacher_info(teacher_id):
     personal_info["Last_Name"] = personnel.last_name
     personal_info["Email"] = personnel.email
     personal_info["id"] = personnel.id
+    personal_info["user_type"] = teacher.__class__.__name__
     
     teacher_details["personal_info"] = personal_info
 

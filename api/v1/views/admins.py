@@ -116,6 +116,7 @@ def get_admin_info(admin_id):
     personal_info["Last_Name"] = personnel.last_name
     personal_info["Email"] = personnel.email
     personal_info["id"] = personnel.id
+    personal_info["user_type"] = admin.__class__.__name__
     
     admin_details["personal_info"] = personal_info
     

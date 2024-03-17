@@ -120,12 +120,13 @@ def get_student_info(student_id):
             if student is None:
                 abort(404)
     personal_info = {}
-    
+
     personal_info["First_Name"] = student.first_name
     personal_info["Last_Name"] = student.last_name
     personal_info["Student ID"] = student.registration_number
     personal_info["Class"] = student.class_id
     personal_info["Email"] = student.email
+    personal_info["user_type"] = student.__class__.__name__
     
     academic_info = {}
     academic_info["courses"] = get_student_courses(student.registration_number)
