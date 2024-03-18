@@ -17,7 +17,7 @@ Government Teachers Training College (GTTC) Ndop which is highly affected by thi
 This motivated us to come up with a solution which can help ameliorate this problem called AcademiX.
 
 # Link to official wesite
-	
+	- https://matrix30.github.io/AcademiX-Platform/
 	- Academix.cyanide.tech
 
 Must include link to your deployed site, final project blog article, author(s) LinkedIn
@@ -29,12 +29,13 @@ Must include link to your deployed site, final project blog article, author(s) L
 
 # Usage
 
+![academix](image.png)
 # Authors
 	- Tekoh Palma Achu 
 		Email: tekohpalma@gmail.com
 		LinkedIn: https://www.linkedin.com/in/tekoh-palma/
 		GitHub: Matrix30
-		
+
 	- Tekoh Bildad Fon 
 		Email: billybill953@gmail.com
 		LinkedIn:
