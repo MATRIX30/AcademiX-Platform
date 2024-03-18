@@ -26,6 +26,13 @@ Must include link to your deployed site, final project blog article, author(s) L
 	- 
 
 # Installation
+## Technologies used
+	- Python3 intepreter
+	- Flask framework
+	- SQLAlchemy
+	- MySQL DBMS
+	- HTML/CSS/Javascript
+	- Bootstrap
 
 # Usage
 
