@@ -34,7 +34,14 @@ Must include link to your deployed site, final project blog article, author(s) L
 	- HTML/CSS/Javascript
 	- Bootstrap
 
+# Architecture of AcademiX
+
 # Usage
+step 1:
+	Clone the project repository <br>
+	```
+	 	git clone 
+	```
 
 ![academix](image.png)
 # Authors
