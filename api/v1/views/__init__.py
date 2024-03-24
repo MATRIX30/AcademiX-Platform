@@ -40,4 +40,4 @@ from api.v1.views.classes import *
 from api.v1.views.students import *
 from api.v1.views.courses import *
 from api.v1.views.teachers import *
-#from api.v1.views.student_course import *
+from api.v1.views.student_course import *
