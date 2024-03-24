@@ -4,6 +4,7 @@ from api.v1.views import app_views, make_remark
 from models import storage
 from flask import jsonify, abort, request
 from models.course import Course
+from models.teacher import Teacher
 from api.v1.views import limiter
 
 
@@ -72,9 +73,15 @@ def get_course(course_id):
     """
     course = storage.get(Course, course_id)
     if course is None:
-        abort(404)
+        course = session.query(Course).filter_by(code=course_id).first()
+        if course is None:
+            abort(404)
     if request.method == "GET":
-        return jsonify(course.to_dict())
+        result=course.to_dict()
+        teacher = session.query(Teacher).filter_by(id=result["teacher_id"]).first()
+        result["teacher"]= teacher.first_name + " " + teacher.last_name
+        #return jsonify(course.to_dict())
+        return jsonify(result)
     
     elif request.method == "DELETE":
         storage.delete(course)
