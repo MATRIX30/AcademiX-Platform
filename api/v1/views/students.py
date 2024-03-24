@@ -66,8 +66,6 @@ def get_student(student_id):
     student = storage.get(Student, student_id)
     if student is None:
         student = session.query(Student).filter_by(registration_number=student_id).first()
-        if student is None:
-            abort(404)
     if student is None:
         abort(404)
     if request.method == "GET":
