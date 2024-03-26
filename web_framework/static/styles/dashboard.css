@@ -122,6 +122,14 @@ a > img {
 	color: #f7f3f3;
 }
 
+a > button {
+	border-radius: 15px;
+	border: 1px solid white;
+	background-color: #f54e4e;
+	padding: 10px;
+	color: #f7f3f3;
+}
+
 .gray {
 	background-color: gray;
 	border-radius: 50px;
@@ -140,9 +148,26 @@ a > img {
 	font-weight: 600;
 	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.fact_info{
+	display: grid;
+	grid-template-columns: auto;
+	align-items: center;
+	font-weight: 600;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 .footer {
 	text-align: center;
 	font-weight: 600;
 	margin: 5px;
 }
 
+.card-container{
+	display: grid;
+	grid-template-columns: 1fr ;
+	grid-template-rows: auto;
+    gap: 50px;
+    margin-left: 90px; /* Adjust margin-left to match the width of the nav bar */
+    padding: 20px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
