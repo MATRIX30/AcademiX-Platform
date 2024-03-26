@@ -7,7 +7,7 @@
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-VhaezJL3sAdqkSmB37lmC3vRrB/0ai8iMpAMyPazdQl5QOOxC0+pbY0EGS7JGQ3R" crossorigin="anonymous">
 
-	<title>Student dashboard | AcademiX</title>
+	<title>Teachers dashboard | AcademiX</title>
 </head>
 
 <body>
@@ -30,10 +30,7 @@
 			<a href=""><img src="../static/images/courses.png" alt="courses Icon"></a>
 			<div class="popup-text">Courses</div>
 		</div>
-		<div class="image-container">
-			<a href=""><img src="../static/images/report card.png" alt="report card image"></a>
-			<div class="popup-text">Report Cards</div>
-		</div>
+
 
 		<div class="image-container">
 			<a href=""><img src="../static/images/chat.png" alt="chat icon"></a>
@@ -44,6 +41,10 @@
 			<img src="../static/images/user1.png" alt="user icon"></a>
 			<div class="popup-text">Profile</div>
 		</div>
+		<div class="image-container">
+			<a href="/" action="/login"><img src="../static/images/power.png" alt="user icon"></a>
+			<div class="popup-text">Logout</div>
+		</div>
 	</div>
 	<div class="content-container">
 		<div class="calender-container ">
@@ -51,7 +52,7 @@
 		</div>
 		<div class="info-container grid"> 
 			<div class="header-section">
-				<h2>Profile Information</h2>
+				<h2>{{ info["personal_info"]["user_type"]}} Profile Information</h2>
 			</div>
 			<div class="body-section">
 				<div class="content">
@@ -76,12 +77,23 @@
 					</div>
 
 					<div class="Rank">
-						<h3>Class Ranking</h3>
+						<h3>Academic Information</h3>
 						<hr>
-						<p>1st term: XX</p>
-						<p>2nd term: XX</p>
-						<p>3rd term: XX</p>
-						<p>Overall Average: XX</p>
+						{% if info %}
+							<ul>
+								<li>Grade : {{ info["teacher_info"]["grade"]}}</li>
+								<li>Matricule :  {{ info["teacher_info"]["matricule"]}}</li>
+								<li>Position : {{ info["teacher_info"]["position"]}}</li>
+								<li>Teacher Since :      {{ info["teacher_info"]["created_at"]}}</li>
+							</ul>
+						{% else %}
+							<ul>
+								<li>Grade : xx </li>
+								<li>Matricule :  xx </li>
+								<li>Position : xx </li>
+								<li>Teacher Since :      xx </li>
+							</ul>
+						{% endif %}
 					</div>
 
 				</div>
@@ -95,12 +107,15 @@
 				<div class="content">
 					<div class="course_info">
 						{%if info%}
-							{% for course in info["academic_info"]["courses"] %}
+							{% for course in info["courses"] %}
+								<div class="course_code">
+									<p>{{ course["code"] }}</p>
+								</div>
 								<div class="course_title">
 									<p>{{ course["title"] }}</p>
 								</div>
 								<div class="view_course_info">
-									<button>view Marks</button>
+									<a href="{{ url_for('fill_course_marks', course_id=course['code']) }}"><button>Manage Course</button></a>
 								</div>
 							{% endfor %}
 						{% else %}

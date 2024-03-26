@@ -13,12 +13,12 @@
 <body>
 	<div class="nav_container">
 		<div class="image-container">
-			<a href="./landing_page.html"><img src="../static/images/logo1.png" alt="main academiX logo"></a>
+			<a href="{{ url_for('login') }}"><img src="../static/images/logo1.png" alt="main academiX logo"></a>
 			<div class="popup-text">Home</div>
 			<hr>
 		</div>
 		<div class="image-container">
-			<a href=""><img src="../static/images/calender.png" alt="Calender image"></a>
+			<a href=""  action="/login" method="get" type="submit"><img src="../static/images/calender.png" alt="Calender image"></a>
 			<div class="popup-text">Calender</div>
 		</div>
 		
@@ -31,7 +31,7 @@
 			<div class="popup-text">Courses</div>
 		</div>
 		<div class="image-container">
-			<a href=""><img src="../static/images/report card.png" alt="report card image"></a>
+			<a href="/results/?student_id={{ info['personal_info']['Student ID']}}"><img src="../static/images/report card.png" alt="report card image"></a>
 			<div class="popup-text">Report Cards</div>
 		</div>
 
@@ -42,22 +42,43 @@
 		</div>
 		
 		<div class="image-container">
-			<img src="../static/images/user1.png" alt="user icon"></a>
+			<a href="{{ url_for('student_profile', student_id=info['personal_info']['Student ID']) }}"><img src="../static/images/user1.png" alt="user icon"></a>
 			<div class="popup-text">Profile</div>
 		</div>
-	</div>
-	<div class="content-container">
-		<div class="calender-container ">
-			  
+		
+		<div class="image-container">
+			<a href="/" action="/login"><img src="../static/images/power.png" alt="user icon"></a>
+			<div class="popup-text">Logout</div>
 		</div>
+
+	</div>
+
+	
+	<div class="content-container">
+		<div class="facts-container grid">
+			<div class="header-section">
+				<h2>Fun Facts: Did you know?</h2>
+			</div>
+			{% for fact in facts%}
+				<div class="body-section">
+					<div class="fact_info">
+						<div class="message_title">
+							<p>{{ fact["fact"] }}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	
+
 		<div class="info-container grid"> 
 			<div class="header-section">
-				<h2>Profile Information</h2>
+				<h2>{{ info["personal_info"]["user_type"]}} Profile Information</h2>
 			</div>
 			<div class="body-section">
 				<div class="content">
 					<div class="personal_info">
-						<h3>Personal Information</h3>
+						<h3> Personal Information</h3>
 						<hr>
 						{% if info %}
 							<ul>
