@@ -98,3 +98,7 @@ class FileStorage:
             val = obj.split('.')[1]
             if val == id:
                 return  self.__objects[obj]
+            
+    def get_session(self):
+        """get the current session"""
+        return self
