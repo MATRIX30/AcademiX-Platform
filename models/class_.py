@@ -71,7 +71,7 @@ if models.storage_type == "db":
             connection.execute(student_course_insert)
 
     @event.listens_for(Student, "after_insert")
-    def copy_course_to_students(mapper, connection, target):
+    def copy_student_to_courses(mapper, connection, target):
         # Retrieve all courses with the same class_id as the inserted student
         courses = models.storage.get_session().query(Course).filter(Course.class_id == target.class_id).all()
         
