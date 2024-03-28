@@ -43,9 +43,8 @@ def admins():
             if "status" not in data:
                 abort(400, "status missing")
             if not isinstance(data["status"], int):
-                abort(400, "status missing")
+                abort(400, "status must be int 0-inactive 1-active")
             new_admin["status"] = data["status"]
-            
             admin = Admin(**new_admin)
             admin.save()
             return jsonify(admin.to_dict()), 201
@@ -133,7 +132,7 @@ def get_admin_info(admin_id):
     adminstrative_info["Teachers"] = session.query(Teacher).count()
     adminstrative_info["students"] = session.query(Student).count()
     
-    admin_details["adminstrative_info "] = adminstrative_info 
+    admin_details["adminstrative_info"] = adminstrative_info 
 
     
     return jsonify(admin_details), 200
