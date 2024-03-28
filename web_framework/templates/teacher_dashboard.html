@@ -47,8 +47,19 @@
 		</div>
 	</div>
 	<div class="content-container">
-		<div class="calender-container ">
-			  
+		<div class="facts-container grid">
+			<div class="header-section">
+				<h2>Fun Facts: Did you know?</h2>
+			</div>
+			{% for fact in facts%}
+				<div class="body-section">
+					<div class="fact_info">
+						<div class="message_title">
+							<p>{{ fact["fact"] }}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
 		</div>
 		<div class="info-container grid"> 
 			<div class="header-section">

@@ -7,7 +7,7 @@
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-VhaezJL3sAdqkSmB37lmC3vRrB/0ai8iMpAMyPazdQl5QOOxC0+pbY0EGS7JGQ3R" crossorigin="anonymous">
 
-	<title>Student dashboard | AcademiX</title>
+	<title>Admin dashboard | AcademiX</title>
 </head>
 
 <body>
@@ -47,8 +47,19 @@
 		</div>
 	</div>
 	<div class="content-container">
-		<div class="calender-container ">
-			  
+		<div class="facts-container grid">
+			<div class="header-section">
+				<h2>Fun Facts: Did you know?</h2>
+			</div>
+			{% for fact in facts%}
+				<div class="body-section">
+					<div class="fact_info">
+						<div class="message_title">
+							<p>{{ fact["fact"] }}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
 		</div>
 		<div class="info-container grid"> 
 			<div class="header-section">
@@ -63,53 +74,78 @@
 							<ul>
 								<li>First Name : {{ info["personal_info"]["First_Name"]}}</li>
 								<li>Last Name :  {{ info["personal_info"]["Last_Name"]}}</li>
-								<li>Student ID : {{ info["personal_info"]["Student ID"]}}</li>
-								<li>Class :      {{ info["personal_info"]["Class"]}}</li>
+								<li>Email : {{ info["personal_info"]["Email"]}}</li>
+								<li>User_type :      {{ info["personal_info"]["user_type"]}}</li>
 							</ul>
 						{% else %}
 							<ul>
 								<li>First Name : xx </li>
 								<li>Last Name :  xx </li>
-								<li>Student ID : xx </li>
-								<li>Class :      xx </li>
+								<li>Email : xx </li>
+								<li>User_type :      xx </li>
 							</ul>
 						{% endif %}
 					</div>
 
-					<div class="Rank">
-						<h3>Class Ranking</h3>
+					<div class="personal_info">
+						<h3>Admin Information</h3>
 						<hr>
-						<p>1st term: XX</p>
-						<p>2nd term: XX</p>
-						<p>3rd term: XX</p>
-						<p>Overall Average: XX</p>
+						{% if info %}
+							<ul>
+								<li>Admin_type : {{ info["admin_info"]["admin_type"]}}</li>
+								<li>Active Since :  {{ info["admin_info"]["created_at"]}}</li>
+								<li>Status : {{ info["admin_info"]["status"]}}</li>
+								
+							</ul>
+						{% else %}
+							<ul>
+								<li>Admin Type : xx </li>
+								<li>Active Since:  xx </li>
+								<li>Status : 0</li>
+							</ul>
+						{% endif %}
 					</div>
+
 
 				</div>
 			</div>
 		</div>
-		<div class="course-container grid">
+		<div class="artifact-container grid">
 			<div class="header-section">
-				<h2>My Course(s)</h2>
+				<h2>My Artifacts</h2>
 			</div>
 			<div class="body-section">
 				<div class="content">
-					<div class="course_info">
+					<div class="body-section">
 						{%if info%}
-							{% for course in info["academic_info"]["courses"] %}
-								<div class="course_title">
-									<p>{{ course["title"] }}</p>
-								</div>
-								<div class="view_course_info">
-									<button>view Marks</button>
-								</div>
+							{% for artifact, value in info["adminstrative_info"].items() %}
+								
+									<div class="artifact_info">
+											<div class="message_title">
+												<p>{{ artifact }}</p> 
+											</div>
+											<div><button id="artifact_count">{{ value }}</button></div>
+											<div class="view_course_info">
+												<button>manage artifact</button>
+											</div>
+
+											
+									</div>
+									
+								
 							{% endfor %}
 						{% else %}
-							<div class="course_title">
-								<p>No Course Available!</p>
+							<div class="message_info">
+									<div class="message_title">
+										<p>No Artifacts Found</p>
+									</div>
+									<div class="view_course_info">
+										<button>create</button>
+									</div>
 							</div>
+						
 						{% endif %}
-
+				
 					</div>
 				</div>
 			</div>
@@ -134,7 +170,7 @@
 							<p>Hello buddy how are you</p>
 						</div>
 						<div class="view_course_info">
-							<button>view Message</button>
+							<button >view Message</button>
 						</div>
 				</div>
 			</div>
