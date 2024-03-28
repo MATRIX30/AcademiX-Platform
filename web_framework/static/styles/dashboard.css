@@ -149,6 +149,14 @@ a > button {
 	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.artifact_info{
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr;
+	align-items: center;
+	font-weight: 600;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .fact_info{
 	display: grid;
 	grid-template-columns: auto;
@@ -170,4 +178,14 @@ a > button {
     margin-left: 90px; /* Adjust margin-left to match the width of the nav bar */
     padding: 20px;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#artifact_count{
+    border-radius: 50%;
+    background-color: #FF8080;
+    padding: 10px; /* Adjust padding as needed */
+    width: 40px; /* Set width and height to ensure the button is round */
+    height:40px;
+    text-align: center; /* Center text horizontally */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Cursor style */
 }
