@@ -51,7 +51,7 @@
 	<div class="card-container">
 		<div class="report_card-container grid"> 
 			<div class="header-section">
-				<h2>Course Evaluation Form</h2>
+				<h2>1st Term Course Evaluation Form</h2>
 			</div>
 			<div class="body-section">
 				<div class="content">
@@ -128,7 +128,167 @@
 				</div>
 			</div>
 		</div>
+		<div class="report_card-container grid"> 
+			<div class="header-section">
+				<h2>2nd Term Course Evaluation Form</h2>
+			</div>
+			<div class="body-section">
+				<div class="content">
+					<div class="personal_info">
+						<h3> Course Information</h3>
+						<hr>
+						{% if course %}
+							<ul>
+								<li>Title : {{ course["title"]}}</li>
+								<li>Code :  {{ course["code"] }}</li>
+								<li>Teacher's Name : {{ course["teacher"]}}</li>
+								<li>Class :      {{ course["class_id"]}}</li>
+								<li>Number of Students enrolled :      {{ 25 }}</li>
+							</ul>
+						{% else %}
+							<ul>
+								<li>Title : xx</li>
+								<li>Code :  xx</li>
+								<li>Teacher's Name : xx</li>
+								<li>Class :   xx</li>
+								<li>Number of Students enrolled :     xx</li>
+							</ul>
+						{% endif %}
+					</div>
+					<div class="Rank">
+						<h3>Course Evaluation</h3>
+						<hr>
+					</div>
+					<form method="POST" action="/save_course_results">
+						<table class="table table-bordered">
+							<thead class="text-center">
+							<tr>
+								<th scope="col">SN</th>
+								<th scope="col">Student ID</th>
+								<th scope="col">First Name</th>
+								<th scope="col">Last Name</th>
+								<th scope="col">1st Evaluation</th>
+								<th scope="col">2nd Evaluation</th>
+								<th scope="col">Average</th>
+								<th scope="col">Remark</th>
+							</tr>
+							</thead>
+							<tbody>
+								{% set ns = namespace(counter=1) %}
+								{% for student in students %}
+									<tr class="text-center">
+										<th scope="row">{{ ns.counter }}</th>
+										<td>{{ student["registration_number"] }}</td>
+										<td>{{ student["first_name"] }}</td>
+										<td>{{ student["last_name"] }}</td>
+										<td><input type="number" name="third_seq[]" value="{{ student['second_term'][0] }}"></td>
+										<td><input type="number" name="fourth_seq[]" value="{{ student['second_term'][1] }}"></td>
+										<td>{{  student["second_term"][2]  }}</td>
+										<td>{{  student["second_term"][3]  }}</td>
+										<input type="hidden" name="course_id[]" value="{{ course['code'] }}">
+										<input type="hidden" name="term" value="2">
+										<input type="hidden" name="student_id[]" value="{{ student['registration_number'] }}">
+									</tr>
+									{% set ns.counter = ns.counter + 1 %}
+								{% endfor %}
+							</tbody>
+						</table>
+						<div class="Rank">
+							<h3>Evaluation Summary</h3>
+							<hr>
+							<p>Total Marks: XX</p>
+							<p>Overall Average: XX</p>
+							<p>General Remark: XX</p>
+							<p>Class Ranking: XX</p>
+							<button class="mx-5 btn btn-success" type="submit"> Save update</button>
+							<p>Operation Status: <b>{{ message[0] }}</b></p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="report_card-container grid"> 
+			<div class="header-section">
+				<h2>3rd Term Course Evaluation Form</h2>
+			</div>
+			<div class="body-section">
+				<div class="content">
+					<div class="personal_info">
+						<h3>Course Information</h3>
+						<hr>
+						{% if course %}
+							<ul>
+								<li>Title : {{ course["title"]}}</li>
+								<li>Code :  {{ course["code"] }}</li>
+								<li>Teacher's Name : {{ course["teacher"]}}</li>
+								<li>Class :      {{ course["class_id"]}}</li>
+								<li>Number of Students enrolled :      {{ 25 }}</li>
+							</ul>
+						{% else %}
+							<ul>
+								<li>Title : xx</li>
+								<li>Code :  xx</li>
+								<li>Teacher's Name : xx</li>
+								<li>Class :   xx</li>
+								<li>Number of Students enrolled :     xx</li>
+							</ul>
+						{% endif %}
+					</div>
+					<div class="Rank">
+						<h3>Course Evaluation</h3>
+						<hr>
+					</div>
+					<form method="POST" action="/save_course_results">
+						<table class="table table-bordered">
+							<thead class="text-center">
+							<tr>
+								<th scope="col">SN</th>
+								<th scope="col">Student ID</th>
+								<th scope="col">First Name</th>
+								<th scope="col">Last Name</th>
+								<th scope="col">1st Evaluation</th>
+								<th scope="col">2nd Evaluation</th>
+								<th scope="col">Average</th>
+								<th scope="col">Remark</th>
+							</tr>
+							</thead>
+							<tbody>
+								{% set ns = namespace(counter=1) %}
+								{% for student in students %}
+									<tr class="text-center">
+										<th scope="row">{{ ns.counter }}</th>
+										<td>{{ student["registration_number"] }}</td>
+										<td>{{ student["first_name"] }}</td>
+										<td>{{ student["last_name"] }}</td>
+										
+										<td><input type="number" name="fifth_seq[]" value="{{ student['third_term'][0] }}"></td>
+										<td><input type="number" name="sixth_seq[]" value="{{ student['third_term'][1] }}"></td>
+										<td>{{  student["third_term"][2]  }}</td>
+										<td>{{  student["third_term"][3]  }}</td>
+										<input type="hidden" name="course_id[]" value="{{ course['code'] }}">
+										<input type="hidden" name="term" value="3">
+										<input type="hidden" name="student_id[]" value="{{ student['registration_number'] }}">
+									</tr>
+									{% set ns.counter = ns.counter + 1 %}
+								{% endfor %}
+							</tbody>
+						</table>
+						<div class="Rank">
+							<h3>Evaluation Summary</h3>
+							<hr>
+							<p>Total Marks: XX</p>
+							<p>Overall Average: XX</p>
+							<p>General Remark: XX</p>
+							<p>Class Ranking: XX</p>
+							<button class="mx-5 btn btn-success" type="submit"> Save update</button>
+							<p>Operation Status: <b>{{ message[0] }}</b></p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 
+	</div>
 	<div class="footer">
 		<p>AcademiX © 2024 | Powered by Cyanide Engine</p>
 	</div>
