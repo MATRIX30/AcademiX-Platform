@@ -24,7 +24,7 @@ This motivated us to come up with a solution which can help ameliorate this prob
 Must include link to your deployed site, final project blog article, author(s) LinkedIn
 
 # project Blog Article
-	- 
+	- https://medium.com/@tekohpalma/building-software-solutions-in-times-of-war-the-academix-story-99810754dac6
 
 # Installation
 ## Technologies used
