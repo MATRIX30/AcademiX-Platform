@@ -19,6 +19,7 @@ This motivated us to come up with a solution which can help ameliorate this prob
 # Link to official wesite
 	- https://matrix30.github.io/AcademiX-Platform/
 	- Academix.cyanide.tech
+	- https://academix-platform.vercel.app/ (landing page)
 
 Must include link to your deployed site, final project blog article, author(s) LinkedIn
 
