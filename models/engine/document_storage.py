@@ -7,3 +7,6 @@ import pymongo
 class DocumentStorage:
     pass
 
+    def save():
+        """method to save an object to storage"""
+        pass
