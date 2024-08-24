@@ -1,4 +1,4 @@
-# AcademiX-Platform
+#AcademiX-Platform
 
 # Introduction
 
@@ -59,3 +59,4 @@ step 1:
 # Related projects
 
 # Licensing
+    - MIT License
