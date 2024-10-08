@@ -26,7 +26,6 @@ Must include link to your deployed site, final project blog article, author(s) L
 # project Blog Article
 	- https://medium.com/@tekohpalma/building-software-solutions-in-times-of-war-the-academix-story-99810754dac6
 
-# Installation
 ## Technologies used
 	- Python3 intepreter
 	- Flask framework
@@ -36,6 +35,10 @@ Must include link to your deployed site, final project blog article, author(s) L
 	- Bootstrap
 
 # Architecture of AcademiX
+
+
+
+# Installation
 
 # Usage
 step 1:
